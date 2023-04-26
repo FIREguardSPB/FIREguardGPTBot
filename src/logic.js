@@ -132,7 +132,8 @@ async function proccessGPTResponseImage(ctx, text) {
     console.log('DEBUG', ctx.session.messages)
     
     ctx.session.messages.push(gptMessage(text))
-    const response = await openai.image(ctx.session.messages)
+    const response = await openai.image(text)
+    console.log('response IMAGE', response);
     
     if (!response)
       return await ctx.reply(
