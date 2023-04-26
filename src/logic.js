@@ -60,7 +60,8 @@ export async function handleCallbackQuery(ctx) {
   try {
     if (ctx.update.callback_query.data === 'save_conversation') {
       const user = await mongo.createOrGetUser(ctx.update.callback_query.from)
-      await mongo.saveConversation(ctx.session.messages, user._id)
+      console.log('DEBUG:', ctx.update.callback_query.from, user.telegramId);
+      await mongo.saveConversation(ctx.session.messages, user.telegramId)
       ctx.session = emptySession()
       await ctx.reply('Переписка сохранена и закрыта. Вы можете начать новую.')
     } else if (ctx.update.callback_query.data.startsWith('conversation')) {
