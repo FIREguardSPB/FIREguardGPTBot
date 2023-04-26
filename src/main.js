@@ -33,9 +33,9 @@ bot.command('admin', async (ctx) => {
   if (ctx.message.from.id === config.get('ADMIN_TG_ID')) return
   await ctx.reply('Привет Антон')
 })
-bot.command('image', async (ctx) => {
-  await proccessImagePrompt(ctx);
-})
+bot.command('image',
+  proccessImagePrompt
+)
 bot.on(message('voice'), proccessVoiceMessage)
 
 bot.on(message('text'), proccessTextMessage)
