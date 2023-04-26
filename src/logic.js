@@ -46,6 +46,7 @@ export async function proccessTextMessage(ctx) {
 export async function proccessImagePrompt(ctx) {
   try {
     await ctx.reply(code('Секунду. Жду ответ от ChatGPT'))
+    console.log(ctx, ctx.message.text, 'DEBUG IMAGE')
     await proccessGPTResponseImage(ctx, ctx.message.text)
   } catch (e) {
     await ctx.reply(
