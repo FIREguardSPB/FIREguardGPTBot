@@ -128,6 +128,7 @@ async function proccessGPTResponse(ctx, text) {
     console.log(`Error while proccessing gpt response`, e.message)
   }
 }
+
 async function proccessGPTResponseImage(ctx, text) {
   try {
     console.log('DEBUG', ctx.session.messages, text)
@@ -142,10 +143,13 @@ async function proccessGPTResponseImage(ctx, text) {
       )
     
     ctx.session.messages.push(
-      gptMessage(response.content, openai.roles.ASSISTANT)
+      gptMessage(response, openai.roles.ASSISTANT)
     )
     
-    await ctx.reply(response.content, {
+    // Отправляем полученное изображение пользователю
+    await ctx.replyWithPhoto({ url: response });
+    
+    await ctx.reply("Сохранить и закончить переписку?", {
       reply_markup: {
         inline_keyboard: [
           [
@@ -161,3 +165,38 @@ async function proccessGPTResponseImage(ctx, text) {
     console.log(`!!!Error while proccessing gpt response`, e.message)
   }
 }
+
+//
+// async function proccessGPTResponseImage(ctx, text) {
+//   try {
+//     console.log('DEBUG', ctx.session.messages, text)
+//
+//     ctx.session.messages.push(gptMessage(text))
+//     const response = await openai.image(text)
+//     console.log('response IMAGE', response);
+//
+//     if (!response)
+//       return await ctx.reply(
+//         `Ошибка с API. Скажи Антону, чтоб пофиксил. ${response}`
+//       )
+//
+//     ctx.session.messages.push(
+//       gptMessage(response.content, openai.roles.ASSISTANT)
+//     )
+//
+//     await ctx.reply(response.content, {
+//       reply_markup: {
+//         inline_keyboard: [
+//           [
+//             {
+//               text: 'Сохранить и закончить переписку?',
+//               callback_data: 'save_conversation',
+//             },
+//           ],
+//         ],
+//       },
+//     })
+//   } catch (e) {
+//     console.log(`!!!Error while proccessing gpt response`, e.message)
+//   }
+// }
