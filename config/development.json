@@ -1,6 +1,0 @@
-{
-  "TELEGRAM_TOKEN": "6067151661:AAEmLxfHfrHlG-y3TGjHjBnhiSrECAm8bUQ",
-  "OPEN_AI_KEY": "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",
-  "MONGO_URI": "mongodb://mongo:27017/tgbot",
-  "TEST_ENV": "dev"
-}
