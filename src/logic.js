@@ -158,6 +158,6 @@ async function proccessGPTResponseImage(ctx, text) {
       },
     })
   } catch (e) {
-    console.log(`Error while proccessing gpt response`, e.message)
+    console.log(`!!!Error while proccessing gpt response`, e.message)
   }
 }
