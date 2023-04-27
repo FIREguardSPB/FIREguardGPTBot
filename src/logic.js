@@ -113,18 +113,20 @@ async function proccessGPTResponse(ctx, text) {
       gptMessage(response.content, openai.roles.ASSISTANT)
     )
 
-    await ctx.reply(response.content, {
-      reply_markup: {
-        inline_keyboard: [
-          [
-            {
-              text: 'Сохранить и закончить переписку?',
-              callback_data: 'save_conversation',
-            },
-          ],
-        ],
-      },
-    })
+    await ctx.reply(response.content
+    //   , {
+    //   reply_markup: {
+    //     inline_keyboard: [
+    //       [
+    //         {
+    //           text: 'Сохранить и закончить переписку?',
+    //           callback_data: 'save_conversation',
+    //         },
+    //       ],
+    //     ],
+    //   },
+    // }
+    )
   } catch (e) {
     console.log(`Error while proccessing gpt response`, e.message)
   }
@@ -150,18 +152,18 @@ async function proccessGPTResponseImage(ctx, text) {
     // Отправляем полученное изображение пользователю
     await ctx.replyWithPhoto({ url: response });
     
-    await ctx.reply("Сохранить и закончить переписку?", {
-      reply_markup: {
-        inline_keyboard: [
-          [
-            {
-              text: 'Сохранить и закончить переписку?',
-              callback_data: 'save_conversation',
-            },
-          ],
-        ],
-      },
-    })
+    // await ctx.reply("Сохранить и закончить переписку?", {
+    //   reply_markup: {
+    //     inline_keyboard: [
+    //       [
+    //         {
+    //           text: 'Сохранить и закончить переписку?',
+    //           callback_data: 'save_conversation',
+    //         },
+    //       ],
+    //     ],
+    //   },
+    // })
   } catch (e) {
     console.log(`!!!Error while proccessing gpt response`, e.message)
   }
